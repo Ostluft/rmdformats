@@ -187,6 +187,16 @@
    $for(include-before)$
    $include-before$
    $endfor$
+
+
+  <div id="ostluft-header">
+    <div id="ostluft-logo">
+      <a style="background-image: none;" href="https://www.ostluft.ch"><img src="ostluft-logo.png" alt="OSTLUFT"></a>
+    </div>
+    <div id="ostluft-wappen">
+      <img src="ostluft-wappen.png" alt="Wappen">
+    </div>  
+  </div>
      
    $if(title)$
    <h1 class="title">$title$</h1>
@@ -203,6 +213,9 @@
       $toc$
     </div>
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
+      $if(date)$
+      <p class="date"><span class="glyphicon glyphicon-calendar"></span> $date$</p>
+      $endif$
       $for(author)$
       $if(author.name)$
       <p class="author"><span class="glyphicon glyphicon-user"></span> $author.name$
@@ -216,9 +229,16 @@
       <p class="author"><span class="glyphicon glyphicon-user"></span> $author$</p>
       $endif$
       $endfor$
-      $if(date)$
-      <p class="date"><span class="glyphicon glyphicon-calendar"></span> $date$</p>
-      $endif$
+      <div class="impressum">
+        <!--<span class="glyphicon glyphicon-book"></span> --><strong>OSTLUFT</strong><br />
+        Geschäftsleitung<br />
+        Amt für Umwelt AFU<br />
+        Lämmlisbrunnenstrasse 54<br />
+        9001 St. Gallen<br />
+        +41 58 229 21 09<br />
+        <a href="https://www.ostluft.ch">www.ostluft.ch</a>, <a href="https://www.ostluft.li">www.ostluft.li</a><br />
+      </div>
+
     </div>
    </div>
    $endif$  

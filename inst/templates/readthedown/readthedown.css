@@ -112,7 +112,7 @@ img.image-lb {
 h1,h2,h3,h4,h5,h6,legend{
     font-family:"Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
     font-weight:700;
-    color: #9F2042;
+    color: #003681;
 }
 
 h1{
@@ -956,6 +956,31 @@ footer p{
     color: #f8e5ee;
 }
 
+#postamble .impressum {
+    font-size: 100%;
+    margin-top: 3px;
+    padding-top: 2px;
+    border-top: 1px solid #b3b3b3;
+}
+
+
+#postamble a {
+    line-height:24px;
+    display:inline-block;
+    position:static;
+    font-size:90%;
+    color:#b3b3b3;
+    direction: ltr;
+    text-decoration: none;
+    padding: 0;
+}
+
+#postamble a:hover{
+    background-color:#4e4a4a;
+    cursor:pointer
+}
+
+
 #postamble .author span,
 #postamble .date span {
     padding-right: 0.7em;
@@ -1092,4 +1117,18 @@ div.sourceCode .row div {
 #main .nav-tabs li.active a {
     color: #333;
     border-bottom: 1px solid #fcfcfc;
+}
+
+
+#ostluft-header {
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  width:100%;
+  margin-bottom: 2em;
+  
+}
+
+#ostluft-header img {
+  height: 40px !important;
 }
