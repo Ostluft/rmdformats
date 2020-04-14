@@ -198,6 +198,7 @@ p{
 }
 
 #content p {
+  text-align: justify;
   margin-bottom: 16px;
 }
 
@@ -377,7 +378,7 @@ dl dd{
     #postamble.shift {
       font-size: 110%;
       left: 0;
-      width: 75%;
+      /* width: 75%; */
     }
     img{
         width:100%;
@@ -392,6 +393,18 @@ dl dd{
     #main .nav-pills > li > a {
         padding: 2px 8px !important;
         margin-right: 0px !important;
+    }
+
+    #ostluft-header {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: auto;
+      margin-bottom: 2em;
+    }
+
+    #ostluft-logo {
+      margin-bottom: 1em;
     }
 }
 
@@ -836,7 +849,7 @@ hr{
 
 #sidebar h2{
     z-index:200;
-    background-color:#004F9A;
+    background-color:#003681;
     text-align:center;
     padding:0.809em;
     display:block;
@@ -943,6 +956,10 @@ footer p{
     font-size: 90%;
     z-index:400;
     padding:12px;
+}
+
+#postamble p {
+  text-align: left;
 }
 
 #postamble .author {
@@ -1126,9 +1143,41 @@ div.sourceCode .row div {
   align-items:center;
   width:100%;
   margin-bottom: 2em;
-  
 }
 
-#ostluft-header img {
+#ostluft-logo img {
   height: 40px !important;
+  width: 132px;
+}
+
+#ostluft-logo a {
+  background-image: none;
+}
+
+#ostluft-wappen {
+  position: relative;
+  height: 40px;
+  width: 338px;
+}
+
+#ostluft-wappen img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    width: 338px;
+    z-index: 1;
+    height: 40px !important;
+}
+
+#ostluft-wappen svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    width: 338px;
+    height: 40px;
+    z-index: 5;
 }
