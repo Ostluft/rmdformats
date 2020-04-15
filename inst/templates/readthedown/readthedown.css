@@ -285,9 +285,7 @@ dl dd{
     .codeblock,pre.sourceCode{
         white-space:pre
     }
-}
-
-@media print{
+    
     html,body,section{
         background:none !important}
 
@@ -317,23 +315,34 @@ dl dd{
 
     p,h2,h3{
         orphans:3;
-        widows:3}
+        widows:3
+      
+    }
 
     h2,h3{
-        page-break-after:avoid}
-}
+        page-break-after:avoid
+      
+    }
 
-@media print{
     #postamble{
-        display:none}
+        display:none;
+    }
 
     #content{
-        margin-left:0}
-}
+      margin-left:0;
+    }
+    
+    #nav-top {
+      display: none;
+    }
 
-@media print{
-    #sidebar{
-        display:none}
+    #sidebar * {
+      display:none;
+    }
+
+    #sidebar h2 a {
+      display:none;    
+    }
 
     @page{
         size: auto;

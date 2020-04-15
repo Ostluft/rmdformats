@@ -1,0 +1,10 @@
+---
+autoSectionLabels: False
+codeBlockCaptions: True
+linkReferences: True
+nameInLink: True
+figureTitle: Abbildung
+figPrefix:
+ - "Abbildung"
+ - "Abbildungen"
+---
