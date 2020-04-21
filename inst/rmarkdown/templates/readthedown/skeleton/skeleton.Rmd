@@ -1,25 +1,319 @@
 ---
-title: ""
-date: "`r Sys.Date()`"
+title: 'skeleton ostluft/readthedown with pandoc-crossref'
+author: 'Your Name'
+date: 
+- 'Created: 14.04.2020'
+- 'Updated: `r format(Sys.Date(), "%d.%m.%Y")`'
 output:
-  rmdformats::readthedown:
+  pdf_document:
+    template: ostluft_header.tex 
     highlight: kate
+    keep_md: FALSE
+    keep_tex: FALSE
+    number_sections: TRUE # needed for Section references
+    pandoc_args:
+    - '--filter'
+    - 'pandoc-crossref'
+    - '--metadata-file'
+    - 'crossref.yml'
+  rmdformats::readthedown:
+    use_bookdown: FALSE
+    lightbox: TRUE
+    gallery: TRUE
+    highlight: kate
+    keep_md: FALSE
+    pandoc_args:
+    - '--filter'
+    - 'pandoc-crossref'
+    - '--metadata-file'
+    - 'crossref.yml'
 ---
 
 
 ```{r setup, echo=FALSE, cache=FALSE}
 library(knitr)
 library(rmdformats)
+library(DT)
 
 ## Global options
 options(max.print="75")
 opts_chunk$set(echo=FALSE,
-	             cache=TRUE,
+	             cache=FALSE,
                prompt=FALSE,
                tidy=TRUE,
                comment=NA,
                message=FALSE,
                warning=FALSE)
 opts_knit$set(width=75)
+
+## this hook adds cross refence to plot chunks
+knitr::knit_hooks$set(plot = function(x, options) {
+  # for multiple plots/images we insert 2 new lines between the links
+  # this could lead to problems with side by side plots
+  append <- ""
+  # handle multiple plots in one chunk: only add caption and reference to last
+  if (options$fig.cur != options$fig.num) {
+    append <- "\n\n"
+    options$crossref = FALSE
+    options$fig.cap = NULL
+  }
+
+  if (!(startsWith(options$label, "unnamed-chunk-") | isFALSE(options$crossref))) {
+      if (is.null(options$out.extra)) {
+        options$out.extra <- c(paste0('alt="', options$fig.cap, '"'), paste0("#fig:", options$label))
+      } else {
+        options$out.extra <- c(options$out.extra, paste0("#fig:", options$label))
+      }
+  }
+
+  # use the lowest internal plot hook and let pandoc sort out the heavy lifting
+  # this will probably disable knitr work arounds for pandoc bugs or edge cases
+  paste0(knitr:::hook_plot_md_pandoc(x, options), append)
+})
 ```
 
+# Features
+
+## Cross referencing
+
+The skeleton is using [lierdakil/pandoc-crossref](https://github.com/lierdakil/pandoc-crossref). This requires the 
+installation of pandoc-crossref with a compatible version of pandoc. Additional a knitr hook to add the necessaries 
+labels is needed. 
+
+In Addition the template supports [bookdown](https://github.com/rstudio/bookdown). Use `use_bookdown: TRUE` in 
+the yaml header to use the `bookdown::html_document2()` renderer.
+
+Both solutions have their merits and disadvantages. pandoc-crossref is more configurable, but also needs more setup. 
+bookdown one the other hand has [additionals features](https://bookdown.org/yihui/bookdown/motivation.html).
+
+## lightbox support
+
+Using the [Magnific popup](http://dimsemenov.com/plugins/magnific-popup/) lightbox plugin for plots and images. To 
+enable the plugin set `lightbox: TRUE` and for gallery support `gallery: TRUE` in the yaml header. Fore more infos 
+see [@sec:lb-support].
+
+## minimal pdf support
+
+The file `ostluft_header.tex` includes the minimal changes to create a pdf output. Search for `% OSTLUFT` to inspect 
+the changes. 
+ 
+
+
+# Cross Referencing {#sec:crossref}
+
+## Test Reference {#sec:test}
+
+* Reference plot [@fig:plt-pressure]
+* Reference plots [@fig:plt-multi]
+* Reference image [@fig:ostluft-logo]
+* Reference image [@fig:knitr-include-graphics]
+* Reference plotted image [@fig:img-vulcan]
+* Reference chapter [@sec:test]
+* Reference equation [@eq:quadratic_formula]
+* Reference to a `kable` table [@tbl:kable]
+* Reference to a Code Block [@lst:syntax_highlighting]
+* Reference to a Code Block [@lst:echo]
+
+
+
+## plots
+
+### simple single plot
+
+```{r plt-pressure, fig.cap="Vapor Pressure of Mercury as a Function of Temperature", fig.height=4}
+plot(pressure)
+```
+
+### multiple plots
+```{r plt-multi, fig.cap="Vapor Pressure of Mercury as a Function of Temperature", fig.height=4}
+plot(pressure)
+plot(women)
+```
+
+### image function works too
+
+```{r img-vulcan, fig.cap="Vulkan mit heat.colors(200)"}
+image(volcano, col =  heat.colors(200))
+```
+
+[Back to Test Links](#sec:test)
+
+## external image
+
+### Markdown Syntax
+
+![Ostluft Logo](ostluft-logo.png){#fig:ostluft-logo width=52px}
+
+
+### knitr::include_graphics
+
+```{r knitr-include-graphics, fig.cap="Ostluft Logo with `knitr::include_graphics`", out.width="279px"}
+knitr::include_graphics("ostluft-wappen.png")
+```
+
+[Back to Test Links](#sec:test)
+
+## NO cross references
+
+### dont include chunks without a label
+
+```{r fig.cap="Average Heights and Weights for American Women"}
+plot(women)
+```
+
+
+### dont include chunks with options crossref=FALSE
+
+```{r plt-sleep-prolongation, fig.cap="Sleep prolongation", crossref=FALSE}
+sleep1 <- with(sleep, extra[group == 2] - extra[group == 1])
+stripchart(sleep1, method = "stack", xlab = "hours",
+           main = "Sleep prolongation (n = 10)")
+boxplot(sleep1, horizontal = TRUE, add = TRUE,
+        at = .6, pars = list(boxwex = 0.5, staplewex = 0.25))
+```
+
+
+[Back to Test Links](#sec:test)
+
+
+# Markdown Format & Syntax Examples
+
+
+## Code and tables
+
+### Syntax highlighting
+
+Here is a sample code chunk, just to show that syntax highlighting works as expected.
+
+```{r sh, echo=TRUE, eval=TRUE}
+library(ggplot2)
+library(dplyr)
+not_null <- function (v) {
+  if (!is.null(v)) return(paste(v, "not null"))
+}
+data(iris)
+tab <- iris %>%
+  group_by(Species) %>%
+  summarise(Sepal.Length = mean(Sepal.Length),
+            Sepal.Width  = mean(Sepal.Width),
+            Petal.Length = mean(Petal.Length),
+            Petal.Width  = mean(Petal.Length))
+```
+
+: Syntax highlighting {#lst:syntax_highlighting}
+
+
+### Verbatim
+
+Here is the structure of the `iris` dataset.
+
+```{r iris_str, echo=TRUE}
+str(iris)
+```
+
+: `ECHO=TRUE` {#lst:echo}
+
+And blockquote :
+
+> Oh ! What a nice blockquote you have here. Much more wonderful than a classical Lorem Ipsum, really.
+And we could also [include links](https://github.com/juba/rmdformats) or simply URLs like this : https://github.com/juba/rmdformats
+
+### Table
+
+Here is a sample table output.
+
+```{r iris_table}
+kable(tab)
+```
+
+: `kable` cross reference example {#tbl:kable}
+
+
+Here is a sample `DT::datatable` output[^DT::datatable].
+
+```{r iris_dt, results='asis'}
+if (knitr::opts_knit$get("rmarkdown.pandoc.to") == "html") {
+  DT::datatable(tab)
+} else {
+  cat("**`DT::datatable`** only supported when rendering to html")
+}
+
+```
+
+
+Here we display a crosstab displayed in several different ways with a "pills"
+interface. To do this, just pass your `table()` result to the `pilltabs()`
+function.
+
+```{r iris_pilltabs, results="asis"}
+if (knitr::opts_knit$get("rmarkdown.pandoc.to") == "html") {
+  iris$seplc <- cut(iris$Sepal.Length,3)
+  tab <- table(iris$Species, iris$seplc)
+  pilltabs(tab)
+} else {
+  cat("**`rmdformats::pilltabs()`** only supported when rendering to html")
+}
+```
+
+## Mathjax
+
+An incredibly complex equation :
+
+$$x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$$ {#eq:quadratic_formula}
+
+
+## Figures
+
+Here is an histogram.
+
+```{r iris_hist}
+ggplot(data=iris) +
+    geom_histogram(aes(x=Petal.Width)) +
+    facet_grid(Species~.)
+```
+
+And a wonderful scatterplot, with a caption.
+
+```{r iris_scatter1, fig.cap="This is a caption"}
+ggplot(data=iris) + geom_point(aes(x=Petal.Width, y=Petal.Length, color=Species))
+```
+
+
+
+
+
+# Lightbox Plugin {#sec:lb-support}
+
+Using the [Magnific popup](http://dimsemenov.com/plugins/magnific-popup/) lightbox plugin for plots and images. To 
+enable the plugin set `lightbox: TRUE` and for gallery support `gallery: TRUE` in the yaml header. To suppress the
+lightbox for a plot or image add the class `"no-image-lb"`.
+
+
+## Caption
+
+Extracts the html from the figure caption. You can use any inline markdown syntax:
+
+```{r lb-caption, fig.cap="For ~~more~~ *Infos*  **about** Violin plots see [ggplot2 reference](https://ggplot2.tidyverse.org/reference/geom_violin.html). Inline markdown: Superscripts 2^nd^, Subcripts H~2~O, inline TeX math $2 + 2$, inline Code `echo 'hello'` and even footnotes[^lb-footnote]"}
+ggplot(mtcars, aes(factor(cyl), mpg)) +
+  geom_violin()
+```
+
+
+
+
+## Suppress lightbox 
+
+Adding the class `no-image-lb` to the image (with the pandoc extension: [link_attributes](https://pandoc.org/MANUAL.html#other-extensions)) or plot (with `out.extra='class="no-image-lb"'`)
+
+![Ostluft Logo without lightbox](ostluft-logo.png){#fig:ol-logo-no-lb class="no-image-lb"}
+
+```{r suppress-lb, fig.cap="Number of cars in each class without lightbox", out.extra='class="no-image-lb"'}
+ggplot(mpg, aes(class)) + geom_bar()
+```
+
+
+<!-- foot notes -->
+
+[^DT::datatable]: cross referencing html tables isn't [possible with pandoc-crossref](https://github.com/lierdakil/pandoc-crossref/issues/122)
+
+[^lb-footnote]: Footnote in figure caption 

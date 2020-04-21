@@ -191,10 +191,10 @@
 
   <div id="ostluft-header">
     <div id="ostluft-logo">
-      <a href="https://www.ostluft.ch"><img src="ostluft-logo.png" alt="OSTLUFT"></a>
+      <a href="https://www.ostluft.ch"><img src="ostluft-logo.png" alt="OSTLUFT" class="no-image-lb"></a>
     </div>
     <div id="ostluft-wappen">
-        <img src="ostluft-wappen.png" alt="Wappen">
+        <img src="ostluft-wappen.png" alt="Wappen" class="no-image-lb">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1604.799px" height="189.977px" viewBox="0 0 1604.799 189.977" enable-background="new 0 0 1604.799 189.977" xml:space="preserve">
           <a xlink:href="https://www.ar.ch/" target="_blank">
               <path fill="transparent" d="M11.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
@@ -242,9 +242,9 @@
       $toc$
     </div>
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
-      $if(date)$
-      <p class="date"><span class="glyphicon glyphicon-calendar"></span> Aktualisiert: $date$</p>
-      $endif$
+      $for(date)$
+      <p class="date"><span class="glyphicon glyphicon-calendar"></span> $date$</p>
+      $endfor$
       $for(author)$
       $if(author.name)$
       <p class="author"><span class="glyphicon glyphicon-user"></span> $author.name$
@@ -372,16 +372,19 @@ $endif$
 	$endif$
 
 	$if(lightbox)$
-	$$('#content img').addClass("image-lb");
-	$$('#content').magnificPopup({
+	$$('#content img').not(".no-image-lb").addClass("image-lb");
+	$$('#content .image-lb').magnificPopup({
 	    type:'image',
 	    closeOnContentClick: false,
 	    closeBtnInside: false,
-	    delegate: 'img',
+	    // delegate: 'img',
 	    gallery: {enabled: $gallery$ },
 	    image: {
 	        verticalFit: true,
-		titleSrc: 'alt'
+		titleSrc: function(item) {
+		  var title = item.el.parent().find(".caption").html();
+		  return title;
+		}
 	    }
  	});
  	$endif$
