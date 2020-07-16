@@ -8,7 +8,7 @@ Das R Package kann mit folgendem Befehl installiert werden:
 
 ```r
 install.packages(remotes)  # if necessary
-remotes::install_github("Ostluft/rOstluft")
+remotes::install_github("Ostluft/rmdformats")
 ```
 
 Danach kann im RStudio aus dem Menu File > New File > R Markdown der Dialog zur Erstellung einer rmd Datei gestartet werden. In diesem Dialog wählt man die Option "From Template" aus und in der Liste dann "HTML Format readthedown"
