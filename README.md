@@ -1,3 +1,25 @@
+# Ostluft/UGZ Fork
+
+Der Ostluft/UGZ Fork ermöglicht die Nutzung von [pandoc-crossref](https://github.com/lierdakil/pandoc-crossref) zur Erstellung von Querverweisen innerhalb des Dokuments. Dies erfordert die Installation von einer kompatiblen [pandoc](https://pandoc.org/installing.html) Version.
+
+Pandoc kann ohne Adminrechte in das Benutzerverzeichnis installiert werden. Danach kopiert man die pandoc-crossref.exe in das Verzeichnis `%USERPROFILE%\AppData\Local\Pandoc`. Nach der Installation von Pandoc RStudio neu starten.
+
+Das R Package kann mit folgendem Befehl installiert werden:
+
+```r
+install.packages(remotes)  # if necessary
+remotes::install_github("Ostluft/rOstluft")
+```
+
+Danach kann im RStudio aus dem Menu File > New File > R Markdown der Dialog zur Erstellung einer rmd Datei gestartet werden. In diesem Dialog wählt man die Option "From Template" aus und in der Liste dann "HTML Format readthedown"
+
+Die Nutzung der PDF Variante setzt [tinytex](https://yihui.org/tinytex/) voraus. Dieses Package wird auf folgende Art installiert:
+
+```r
+install.packages("tinytex") 
+tinytex::install_tinytex()
+```
+
 # rmdformats
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-ago/rmdformats)](https://cran.r-project.org/package=rmdformats)

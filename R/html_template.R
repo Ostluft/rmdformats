@@ -55,6 +55,9 @@ html_template <- function(
     } else {
         pandoc_args <- c(pandoc_args, "--variable", "gallery:false")
     }
+    if (args[["ugz"]]) {
+        pandoc_args <- c(pandoc_args, "--variable", "ugz:true")
+    }
     if (!is.null(args[["cards"]])) {    
         if (args[["cards"]]) {
             pandoc_args <- c(pandoc_args, "--variable", "cards:true")

@@ -188,44 +188,57 @@
    $include-before$
    $endfor$
 
+   $if(ugz)$
+   <div id="ostluft-header">
+     <div id="ugz-mel">
+       <a href="https://www.stadt-zuerich.ch/luftqualitaet">
+          <img src="logo_ugz.png" alt="Umwelt- und Gesundheitsschutz" class="no-image-lb">
+       </a>       
+        <!-- Messung Luftqualität -->
+     </div>
+     <div id="ugz-logo">
 
-  <div id="ostluft-header">
-    <div id="ostluft-logo">
-      <a href="https://www.ostluft.ch"><img src="ostluft-logo.png" alt="OSTLUFT" class="no-image-lb"></a>
+     </div>
+   </div>
+   $else$
+    <div id="ostluft-header">
+      <div id="ostluft-logo">
+        <a href="https://www.ostluft.ch"><img src="ostluft-logo.png" alt="OSTLUFT" class="no-image-lb"></a>
+      </div>
+      <div id="ostluft-wappen">
+          <img src="ostluft-wappen.png" alt="Wappen" class="no-image-lb">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1604.799px" height="189.977px" viewBox="0 0 1604.799 189.977" enable-background="new 0 0 1604.799 189.977" xml:space="preserve">
+            <a xlink:href="https://www.ar.ch/" target="_blank">
+                <path fill="transparent" d="M11.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
+            </a>
+            <a xlink:href="https://www.ai.ch/" target="_blank">
+                <path fill="transparent" d="M197.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
+            </a>
+            <a xlink:href="http://www.gl.ch/" target="_blank">
+                <path fill="transparent" d="M384.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
+            </a>
+            <a xlink:href="https://www.gr.ch/" target="_blank">
+                <path fill="transparent" d="M570.167,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
+            </a>
+            <a xlink:href="https://www.sg.ch/" target="_blank">
+                <path fill="transparent" d="M756.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
+            </a>
+            <a xlink:href="http://www.sh.ch/" target="_blank">
+                <path fill="transparent" d="M942.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
+            </a>
+            <a xlink:href="https://www.tg.ch/" target="_blank">
+                <path fill="transparent" d="M1128.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
+            </a>
+            <a xlink:href="https://www.zh.ch/" target="_blank">
+                <path fill="transparent" d="M1315.167,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
+            </a>
+            <a xlink:href="https://www.liechtenstein.li/" target="_blank">
+                <path fill="transparent" d="M1496.947,19.666h92.535l-5.77,117.209c4.287,50.25-87.963,50.375-83.088-1.75L1496.947,19.666z"></path>
+            </a>
+        </svg>
+      </div>
     </div>
-    <div id="ostluft-wappen">
-        <img src="ostluft-wappen.png" alt="Wappen" class="no-image-lb">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1604.799px" height="189.977px" viewBox="0 0 1604.799 189.977" enable-background="new 0 0 1604.799 189.977" xml:space="preserve">
-          <a xlink:href="https://www.ar.ch/" target="_blank">
-              <path fill="transparent" d="M11.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
-          </a>
-          <a xlink:href="https://www.ai.ch/" target="_blank">
-              <path fill="transparent" d="M197.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
-          </a>
-          <a xlink:href="http://www.gl.ch/" target="_blank">
-              <path fill="transparent" d="M384.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
-          </a>
-          <a xlink:href="https://www.gr.ch/" target="_blank">
-              <path fill="transparent" d="M570.167,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
-          </a>
-          <a xlink:href="https://www.sg.ch/" target="_blank">
-              <path fill="transparent" d="M756.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
-          </a>
-          <a xlink:href="http://www.sh.ch/" target="_blank">
-              <path fill="transparent" d="M942.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
-          </a>
-          <a xlink:href="https://www.tg.ch/" target="_blank">
-              <path fill="transparent" d="M1128.667,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
-          </a>
-          <a xlink:href="https://www.zh.ch/" target="_blank">
-              <path fill="transparent" d="M1315.167,19.666h123.167v92.667c-5.167,76.666-119.5,73.333-123.167,1V19.666z"></path>
-          </a>
-          <a xlink:href="https://www.liechtenstein.li/" target="_blank">
-              <path fill="transparent" d="M1496.947,19.666h92.535l-5.77,117.209c4.287,50.25-87.963,50.375-83.088-1.75L1496.947,19.666z"></path>
-          </a>
-      </svg>
-    </div>
-  </div>
+   $endif$
 
    $if(title)$
    <h1 class="title">$title$</h1>
@@ -258,6 +271,17 @@
       <p class="author"><span class="glyphicon glyphicon-user"></span> $author$</p>
       $endif$
       $endfor$
+      $if(ugz)$
+      <div class="impressum">
+        <!--<span class="glyphicon glyphicon-book"></span> --><strong>Stadt Zürich</strong><br />
+        Umwelt- und Gesundheitsschutz<br />
+        Messung Luftqualität<br />
+        Eggbühlstrasse 23<br />
+        8050 Zürich<br />
+        <a href="tel:+41444121173">+41 44 412 11 73</a><br />
+        <a href="https://www.stadt-zuerich.ch/luftqualitaet">www.stadt-zuerich.ch/luftqualitaet</a><br />
+      </div>      
+      $else$
       <div class="impressum">
         <!--<span class="glyphicon glyphicon-book"></span> --><strong>OSTLUFT</strong><br />
         Geschäftsleitung<br />
@@ -267,7 +291,7 @@
         +41 58 229 21 09<br />
         <a href="https://www.ostluft.ch">www.ostluft.ch</a>, <a href="https://www.ostluft.li">www.ostluft.li</a><br />
       </div>
-
+      $endif$
     </div>
    </div>
    $endif$

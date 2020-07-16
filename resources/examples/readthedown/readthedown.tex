@@ -136,7 +136,7 @@
 
 \title{skeleton ostluft/readthedown with pandoc-crossref}
 \author{Your Name}
-\date{Created: 14.04.2020, Updated: 21.04.2020}
+\date{Created: 14.04.2020, Updated: 16.07.2020}
 
 \begin{document}
 
@@ -345,8 +345,8 @@ as expected.
         \KeywordTok{return}\NormalTok{(}\KeywordTok{paste}\NormalTok{(v, }\StringTok{"not null"}\NormalTok{))}
 \NormalTok{\}}
 \KeywordTok{data}\NormalTok{(iris)}
-\NormalTok{tab \textless{}{-}}\StringTok{ }\NormalTok{iris }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{group\_by}\NormalTok{(Species) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Sepal.Length =} \KeywordTok{mean}\NormalTok{(Sepal.Length), }\DataTypeTok{Sepal.Width =} \KeywordTok{mean}\NormalTok{(Sepal.Width), }\DataTypeTok{Petal.Length =} \KeywordTok{mean}\NormalTok{(Petal.Length), }
-    \DataTypeTok{Petal.Width =} \KeywordTok{mean}\NormalTok{(Petal.Length))}
+\NormalTok{tab \textless{}{-}}\StringTok{ }\NormalTok{iris }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{group\_by}\NormalTok{(Species) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{Sepal.Length =} \KeywordTok{mean}\NormalTok{(Sepal.Length), }
+    \DataTypeTok{Sepal.Width =} \KeywordTok{mean}\NormalTok{(Sepal.Width), }\DataTypeTok{Petal.Length =} \KeywordTok{mean}\NormalTok{(Petal.Length), }\DataTypeTok{Petal.Width =} \KeywordTok{mean}\NormalTok{(Petal.Length))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -433,7 +433,7 @@ to html
 
 An incredibly complex equation :
 
-\begin{equation}x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}\label{eq:quadratic_formula}\end{equation}
+\protect\hypertarget{eq:quadratic_formula}{}{\begin{equation}x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}\label{eq:quadratic_formula}\end{equation}}
 
 \hypertarget{figures}{%
 \subsection{Figures}\label{figures}}
